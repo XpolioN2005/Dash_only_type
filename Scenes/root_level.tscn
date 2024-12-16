@@ -1,0 +1,58 @@
+[gd_scene load_steps=9 format=3 uid="uid://6fvqxh5sb8en"]
+
+[ext_resource type="Texture2D" uid="uid://dppg2ihyct75k" path="res://Assest/Dark/texture_09.png" id="1_nbv3j"]
+[ext_resource type="PackedScene" uid="uid://dhlvvspum407o" path="res://Enities/player/player.tscn" id="1_txp03"]
+[ext_resource type="Script" path="res://Utils/camera.gd" id="2_0rnku"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sjwq7"]
+albedo_texture = ExtResource("1_nbv3j")
+uv1_scale = Vector3(20, 40, 20)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_grubt"]
+size = Vector3(200, 1, 100)
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_cqp6x"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_du0pw"]
+sky_material = SubResource("ProceduralSkyMaterial_cqp6x")
+
+[sub_resource type="Environment" id="Environment_7nxhs"]
+background_mode = 2
+sky = SubResource("Sky_du0pw")
+tonemap_mode = 2
+glow_enabled = true
+
+[node name="root_level" type="Node3D"]
+
+[node name="floor" type="Node" parent="."]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="floor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, -28.7317)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="floor/StaticBody3D"]
+size = Vector3(200, 1, 100)
+material = SubResource("StandardMaterial3D_sjwq7")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="floor/StaticBody3D"]
+shape = SubResource("BoxShape3D_grubt")
+
+[node name="env" type="Node" parent="."]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="env"]
+environment = SubResource("Environment_7nxhs")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="env"]
+transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
+shadow_enabled = true
+
+[node name="Camera" type="Camera3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 0.661312, 0.750111, 0, -0.750111, 0.661312, 0, 15, 20)
+script = ExtResource("2_0rnku")
+
+[node name="player" parent="." instance=ExtResource("1_txp03")]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 1, 8)
+speed = null
