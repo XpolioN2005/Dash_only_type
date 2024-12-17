@@ -10,6 +10,8 @@ extends CharacterBody3D
 @onready var ammo  := 5
 
 
+var bullet = preload("res://Projectile/bullet.tscn")
+
 func _ready() -> void:
 	add_to_group("player")
 
@@ -30,7 +32,7 @@ func _input(event: InputEvent) -> void:
 func _physics_process(delta: float) -> void:
 
 	move_logic(target_pos,delta)
-	# shoot(position)
+	shoot(position)
 	
 	move_and_slide()
 
@@ -47,14 +49,19 @@ func move_logic(target,delta):
 			moving_to_target = false
 
 
-# func shoot(pos):
-# 	if Input.is_action_just_pressed("right_click") and ammo >0:
-# 		ammo = max(0,ammo -1)
-# 		var instance = bullet.instantiate()
-# 		instance.camera = camera
-# 		instance.player = %player
-# 		instance.position = pos
-# 		instance.pos = pos
-# 		instance.add_to_group("bullet")
-# 		get_tree().root.get_child(0).add_child(instance)
-# 		instance.fire()
+func shoot(pos):
+	if Input.is_action_just_pressed("right_click") and ammo >0:
+		ammo = max(0,ammo -1)
+		var instance = bullet.instantiate()
+		instance.camera = camera
+		instance.player = %player
+		instance.position = pos
+		instance.pos = pos
+		instance.add_to_group("bullet")
+		get_tree().root.get_child(0).add_child(instance)
+		instance.fire()
+
+
+func _on_body_entered(body:Node3D) -> void:
+	if body.is_in_group("enemy"):
+		print("u ded")
