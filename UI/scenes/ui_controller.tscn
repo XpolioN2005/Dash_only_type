@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://mucmftdv2p8w"]
+
+[ext_resource type="Script" path="res://UI/script/ui_controller.gd" id="1_n431d"]
+[ext_resource type="PackedScene" uid="uid://chbtbwoxrejwo" path="res://UI/scenes/base_ui.tscn" id="2_46luo"]
+[ext_resource type="PackedScene" uid="uid://cy71i5etttnlj" path="res://UI/scenes/gameover.tscn" id="3_8kli2"]
+[ext_resource type="PackedScene" uid="uid://bv4i251fw3otx" path="res://UI/scenes/pause_menu.tscn" id="4_yykwh"]
+
+[node name="UI_controller" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_n431d")
+
+[node name="base_ui" parent="." instance=ExtResource("2_46luo")]
+layout_mode = 1
+
+[node name="gameover" parent="." instance=ExtResource("3_8kli2")]
+layout_mode = 1
+
+[node name="pause_menu" parent="." instance=ExtResource("4_yykwh")]
+layout_mode = 1

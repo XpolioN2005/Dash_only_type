@@ -1,9 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://6fvqxh5sb8en"]
+[gd_scene load_steps=12 format=3 uid="uid://6fvqxh5sb8en"]
 
 [ext_resource type="Texture2D" uid="uid://dppg2ihyct75k" path="res://Assest/Dark/texture_09.png" id="1_nbv3j"]
 [ext_resource type="PackedScene" uid="uid://dhlvvspum407o" path="res://Enities/player/player.tscn" id="1_txp03"]
 [ext_resource type="Script" path="res://Utils/camera.gd" id="2_0rnku"]
 [ext_resource type="PackedScene" uid="uid://yb3eigbdgbgn" path="res://Utils/enemy_spawner.tscn" id="4_akx7r"]
+[ext_resource type="PackedScene" uid="uid://dtstiwggypfec" path="res://Utils/powerup_spawner.tscn" id="5_xxnyu"]
+[ext_resource type="PackedScene" uid="uid://mucmftdv2p8w" path="res://UI/scenes/ui_controller.tscn" id="6_o0o87"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sjwq7"]
 albedo_texture = ExtResource("1_nbv3j")
@@ -89,3 +91,32 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 48.5942, 0, -39.095)
 
 [node name="area10" type="Node3D" parent="enemy_spawner/spawn_area"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 46.1984, 0, -33.7193)
+
+[node name="powerup_spawner" parent="." instance=ExtResource("5_xxnyu")]
+
+[node name="spawn_area" type="Node" parent="powerup_spawner"]
+
+[node name="area1" type="Node3D" parent="powerup_spawner/spawn_area"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.94907, 0, -6.45011)
+
+[node name="area2" type="Node3D" parent="powerup_spawner/spawn_area"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.97295, 0, -8.90038)
+
+[node name="area3" type="Node3D" parent="powerup_spawner/spawn_area"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.8884, 0, 0)
+
+[node name="area4" type="Node3D" parent="powerup_spawner/spawn_area"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.5506, 0, 0)
+
+[node name="area5" type="Node3D" parent="powerup_spawner/spawn_area"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -9.97025)
+
+[node name="powerup_timer" type="Timer" parent="powerup_spawner"]
+wait_time = 5.0
+autostart = true
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="UI_controller" parent="CanvasLayer" instance=ExtResource("6_o0o87")]
+
+[connection signal="timeout" from="powerup_spawner/powerup_timer" to="powerup_spawner" method="_on_powerup_timer_timeout"]

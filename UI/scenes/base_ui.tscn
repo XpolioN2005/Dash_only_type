@@ -1,0 +1,51 @@
+[gd_scene load_steps=4 format=3 uid="uid://chbtbwoxrejwo"]
+
+[ext_resource type="Script" path="res://UI/script/base_ui.gd" id="1_2ltxr"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yxbji"]
+bg_color = Color(1, 0, 0, 0.0784314)
+border_width_left = 10
+border_width_top = 5
+border_width_right = 10
+border_width_bottom = 5
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_left = 50
+expand_margin_left = 5.0
+expand_margin_top = 5.0
+expand_margin_right = 5.0
+expand_margin_bottom = 5.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5ived"]
+bg_color = Color(1, 0, 0, 1)
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_left = 50
+
+[node name="base_ui" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_2ltxr")
+
+[node name="health" type="ProgressBar" parent="."]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 100.0
+offset_top = -77.0
+offset_right = -100.0
+offset_bottom = -50.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/background = SubResource("StyleBoxFlat_yxbji")
+theme_override_styles/fill = SubResource("StyleBoxFlat_5ived")
+step = 0.1
+value = 70.0
+show_percentage = false
