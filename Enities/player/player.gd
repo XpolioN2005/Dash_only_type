@@ -8,7 +8,7 @@ extends CharacterBody3D
 # In-game vars
 @onready var score := 0
 @onready var ammo  := 5
-@onready var health  := 100
+@onready var health  := 100.0
 
 
 var bullet = preload("res://Projectile/bullet.tscn")
@@ -34,7 +34,7 @@ func _physics_process(delta: float) -> void:
 
 	if health <= 0:
 		print("ded")
-		
+
 	move_logic(target_pos,delta)
 	shoot(position)
 	
@@ -68,4 +68,4 @@ func shoot(pos):
 
 func _on_body_entered(body:Node3D) -> void:
 	if body.is_in_group("enemy"):
-		health -= 10
+		health -= 20
