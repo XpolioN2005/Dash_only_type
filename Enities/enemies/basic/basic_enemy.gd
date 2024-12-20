@@ -36,7 +36,7 @@ func move_ai(target,delta):
 func death():
 	# get_node("../../particle_controller").explode_particle(position)
 
-	player.score += 100
+	player.score += 1
 	queue_free()
 
 	get_parent().dead_enemies = get_parent().dead_enemies + 1 

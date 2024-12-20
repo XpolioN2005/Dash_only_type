@@ -15,6 +15,7 @@ material = SubResource("StandardMaterial3D_dofgf")
 
 [node name="player" type="CharacterBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+collision_mask = 2
 script = ExtResource("1_xjgij")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
@@ -24,6 +25,8 @@ shape = SubResource("CapsuleShape3D_dh3l1")
 mesh = SubResource("CapsuleMesh_h3n0d")
 
 [node name="detector" type="Area3D" parent="."]
+collision_layer = 2
+collision_mask = 2
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="detector"]
 transform = Transform3D(1.1, 0, 0, 0, 1.1, 0, 0, 0, 1.1, 0, 0, 0)

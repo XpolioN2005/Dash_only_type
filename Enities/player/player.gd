@@ -32,6 +32,8 @@ func _input(event: InputEvent) -> void:
 
 func _physics_process(delta: float) -> void:
 
+	position.y = 1
+
 	if health <= 0:
 		print("ded")
 
