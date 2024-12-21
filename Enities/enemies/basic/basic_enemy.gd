@@ -22,7 +22,7 @@ func _physics_process(delta: float) -> void:
 	position.y = 0.5
 
 
-	print(position)
+	# print(position)
 	move_ai(target_pos,delta)	
 	move_and_slide()
 

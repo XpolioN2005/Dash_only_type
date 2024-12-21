@@ -7,6 +7,8 @@ extends Node3D
 var num_of_enemy = 0
 var is_wave_ongoing = false
 
+var spawned_count = 0
+var spawn_paused = false
 
 func _process(_delta) -> void:
 	# pass
@@ -17,12 +19,12 @@ func spawn_eneny():
 	is_wave_ongoing = true
 
 	num_of_enemy = current_level*current_level
-	var spawned_count = 0
 
 	while spawned_count < num_of_enemy:
 		
-		# if %UI_controller.is_paused:
-		# 	continue
+		if %UI_controller.is_paused:
+			spawn_paused = true
+			break
 
 		var instance = enemy.instantiate()
 		var spawn_lenght = $spawn_area.get_child_count() -1
@@ -33,9 +35,14 @@ func spawn_eneny():
 		instance.position = pos
 
 		add_child(instance)
+		print("spawned")
 
 		spawned_count += 1
 		await get_tree().create_timer(0.5).timeout
+
+
+	
+	
 
 
 func start():
@@ -47,4 +54,11 @@ func start():
 		current_level = current_level +1
 		dead_enemies = 0
 		print("next wave")
+
+		spawned_count = 0
+		spawn_eneny()
+
+
+	if spawn_paused and not %UI_controller.is_paused:
+		spawn_paused = false
 		spawn_eneny()
