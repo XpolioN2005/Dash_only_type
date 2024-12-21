@@ -3,7 +3,6 @@ extends CharacterBody3D
 
 
 @onready var player
-
 @export var speed = 400
 
 
@@ -20,6 +19,10 @@ func _physics_process(delta: float) -> void:
 	var target_pos = player.position
 	target_pos.y = 0.5
 
+	position.y = 0.5
+
+
+	print(position)
 	move_ai(target_pos,delta)	
 	move_and_slide()
 
@@ -40,5 +43,3 @@ func death():
 	queue_free()
 
 	get_parent().dead_enemies = get_parent().dead_enemies + 1 
-
-

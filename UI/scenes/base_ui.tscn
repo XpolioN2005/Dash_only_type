@@ -83,7 +83,6 @@ grow_vertical = 2
 
 [node name="head" type="HBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
-alignment = 1
 
 [node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/head"]
 custom_minimum_size = Vector2(250, 0)

@@ -59,6 +59,7 @@ script = ExtResource("2_0rnku")
 unique_name_in_owner = true
 
 [node name="enemy_spawner" parent="." instance=ExtResource("4_akx7r")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 
 [node name="spawn_area" type="Node" parent="enemy_spawner"]
 
@@ -66,31 +67,31 @@ unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40.8222, 0.5, 0)
 
 [node name="area2" type="Node3D" parent="enemy_spawner/spawn_area"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -53.856, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -53.856, 0.5, 0)
 
 [node name="area3" type="Node3D" parent="enemy_spawner/spawn_area"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32.0316, 0, 19.7635)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32.032, 0.5, 19.764)
 
 [node name="area4" type="Node3D" parent="enemy_spawner/spawn_area"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30.2233, 0, 17.9452)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30.223, 0.5, 17.945)
 
 [node name="area5" type="Node3D" parent="enemy_spawner/spawn_area"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -48.4169)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -48.417)
 
 [node name="area6" type="Node3D" parent="enemy_spawner/spawn_area"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.5747, 0, -52.081)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.575, 0.5, -52.081)
 
 [node name="area7" type="Node3D" parent="enemy_spawner/spawn_area"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -39.4085, 0, -50.6309)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -39.409, 0.5, -50.631)
 
 [node name="area8" type="Node3D" parent="enemy_spawner/spawn_area"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -59.9751, 0, -38.4329)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -59.975, 0.5, -38.433)
 
 [node name="area9" type="Node3D" parent="enemy_spawner/spawn_area"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 48.5942, 0, -39.095)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 48.594, 0.5, -39.095)
 
 [node name="area10" type="Node3D" parent="enemy_spawner/spawn_area"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 46.1984, 0, -33.7193)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 46.198, 0.5, -33.719)
 
 [node name="powerup_spawner" parent="." instance=ExtResource("5_xxnyu")]
 
@@ -118,5 +119,6 @@ autostart = true
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="UI_controller" parent="CanvasLayer" instance=ExtResource("6_o0o87")]
+unique_name_in_owner = true
 
 [connection signal="timeout" from="powerup_spawner/powerup_timer" to="powerup_spawner" method="_on_powerup_timer_timeout"]

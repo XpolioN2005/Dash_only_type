@@ -35,7 +35,7 @@ func _physics_process(delta: float) -> void:
 	position.y = 1
 
 	if health <= 0:
-		print("ded")
+		%UI_controller.is_gameover = true
 
 	move_logic(target_pos,delta)
 	shoot(position)

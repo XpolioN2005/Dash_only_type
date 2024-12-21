@@ -1,4 +1,25 @@
-[gd_scene format=3 uid="uid://cy71i5etttnlj"]
+[gd_scene load_steps=8 format=3 uid="uid://cy71i5etttnlj"]
+
+[ext_resource type="Script" path="res://UI/script/gameover.gd" id="1_67mm5"]
+[ext_resource type="Shader" path="res://Shader/pause_menu.gdshader" id="1_coejp"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1lpod"]
+shader = ExtResource("1_coejp")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t6vxg"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5quuh"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1qc3v"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_bottom = 2
+border_color = Color(0.935279, 0.780566, 0.408243, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_l4yjf"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_bottom = 5
 
 [node name="gameover" type="Control"]
 layout_mode = 3
@@ -7,17 +28,29 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_67mm5")
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="red_tint" type="ColorRect" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.027451, 0.67451, 0.713726, 0.203922)
+color = Color(1, 0, 0, 0.0901961)
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
+[node name="bg" type="Panel" parent="."]
+material = SubResource("ShaderMaterial_1lpod")
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 250.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_t6vxg")
+
+[node name="menu" type="HBoxContainer" parent="bg"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -26,44 +59,67 @@ grow_horizontal = 2
 grow_vertical = 2
 alignment = 1
 
-[node name="blank2" type="Control" parent="HBoxContainer"]
+[node name="blank2" type="Control" parent="bg/menu"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer"]
+[node name="menu_container" type="VBoxContainer" parent="bg/menu"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 1.5
 theme_override_constants/separation = 100
 alignment = 1
 
-[node name="lables" type="VBoxContainer" parent="HBoxContainer/VBoxContainer"]
+[node name="lables" type="VBoxContainer" parent="bg/menu/menu_container"]
 layout_mode = 2
 
-[node name="ded" type="Label" parent="HBoxContainer/VBoxContainer/lables"]
+[node name="ded" type="Label" parent="bg/menu/menu_container/lables"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 30
 text = "YOU DIED!"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="score" type="Label" parent="HBoxContainer/VBoxContainer/lables"]
+[node name="score" type="Label" parent="bg/menu/menu_container/lables"]
 layout_mode = 2
 text = "SCORE: 0"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="buttons" type="VBoxContainer" parent="HBoxContainer/VBoxContainer"]
+[node name="button_part" type="HBoxContainer" parent="bg/menu/menu_container"]
 layout_mode = 2
+alignment = 1
 
-[node name="restart" type="Button" parent="HBoxContainer/VBoxContainer/buttons"]
-layout_mode = 2
-text = "RESTART"
-
-[node name="quit" type="Button" parent="HBoxContainer/VBoxContainer/buttons"]
-layout_mode = 2
-text = "QUIT"
-
-[node name="blank" type="Control" parent="HBoxContainer"]
+[node name="blank4" type="Control" parent="bg/menu/menu_container/button_part"]
 layout_mode = 2
 size_flags_horizontal = 3
+
+[node name="buttons" type="VBoxContainer" parent="bg/menu/menu_container/button_part"]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 25
+
+[node name="restart" type="Button" parent="bg/menu/menu_container/button_part/buttons"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+theme_override_styles/focus = SubResource("StyleBoxFlat_5quuh")
+theme_override_styles/hover = SubResource("StyleBoxFlat_1qc3v")
+theme_override_styles/normal = SubResource("StyleBoxFlat_l4yjf")
+text = "RESTART"
+
+[node name="quit" type="Button" parent="bg/menu/menu_container/button_part/buttons"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+theme_override_styles/focus = SubResource("StyleBoxFlat_5quuh")
+theme_override_styles/hover = SubResource("StyleBoxFlat_1qc3v")
+theme_override_styles/normal = SubResource("StyleBoxFlat_l4yjf")
+text = "QUIT
+"
+
+[node name="blank3" type="Control" parent="bg/menu/menu_container/button_part"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[connection signal="pressed" from="bg/menu/menu_container/button_part/buttons/restart" to="." method="_on_restart_pressed"]
+[connection signal="pressed" from="bg/menu/menu_container/button_part/buttons/quit" to="." method="_on_quit_pressed"]
